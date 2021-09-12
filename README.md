@@ -60,6 +60,19 @@ uptobox.com (Uptobox account must be premium), solidfiles.com
 - Shortener support
 - Custom Filename (Only for direct links, Telegram files and Youtube-dl. Not for Mega links and Torrents)
 - Extracting and downloading password protected index links. See these examples:
+
+
+## Additional Features
+- Dump Android Firmwares To GitHub Org, Publicly Or Privately
+- Invite Users To Private GitHub Repos
+- How to use /dump , /pdump , /invite ? 
+```
+dump: /dump <firmware link>
+pdump: /pdump <firmware link>
+invite: /invite Box-boi redmi_biloba_dump
+
+For More Instructions, Refer To dump.sh, pdump.sh and invite.sh Respectively
+```
 <p><a href="https://telegra.ph/Magneto-Python-Aria---Custom-Filename-Examples-01-20"> <img src="https://img.shields.io/badge/See%20Telegraph-grey?style=for-the-badge&logo=telegraph" width="170""/></a></p>
 
 - Extract these filetypes and uploads to Google Drive
@@ -133,6 +146,12 @@ _____REMOVE_THIS_LINE_____=True
 ```
 Fill up rest of the fields. Meaning of each field is discussed below:
 ### Required Field
+- `dump.sh`: Fill Necessary Information In dump.sh in the root directory of repo, will only work if your repo is private[IMPORTANT]
+- `pdump.sh`: Fill Necessary Information In pdump.sh in the root directory of repo, will only work if your repo is private[IMPORTANT]
+- `invite.sh`: Fill Necessary Information In invite.sh in the root directory of repo, will only work if your repo is private[IMPORTANT]
+
+- Uploading Your Github Token To A Public Repo Will Immediately Invalidate It, Hence Will Only Work For Private Repos!
+
 - `BOT_TOKEN`: The Telegram Bot Token that you got from [@BotFather](https://t.me/BotFather)
 - `TELEGRAM_API`: This is to authenticate your Telegram account for downloading Telegram files. You can get this from https://my.telegram.org. **NOTE**: DO NOT put this in quotes.
 - `TELEGRAM_HASH`: This is to authenticate your Telegram account for downloading Telegram files. You can get this from https://my.telegram.org
@@ -354,5 +373,8 @@ Thanks to:
 - [`zevtyardt`](https://github.com/zevtyardt) for some direct links
 - [`yash-dk`](https://github.com/yash-dk) for implementation of qBittorrent on Python
 - [`xyou365`](https://github.com/xyou365) for Service Accounts script
+- [`techyminati`](https://github.com/techyminati) for help in dump script
 
 And many more people who aren't mentioned here, but can be found in [Contributors](https://github.com/SlamDevs/slam-mirrorbot/graphs/contributors).
+
+This Repo Will Be Upstreamed Once A Month To [Slam Mirrorbot Source](https://github.com/SlamDevs/slam-mirrorbot/)

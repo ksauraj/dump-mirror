@@ -16,7 +16,7 @@ from bot.helper.telegram_helper.message_utils import *
 from .helper.ext_utils.bot_utils import get_readable_file_size, get_readable_time
 from .helper.telegram_helper.filters import CustomFilters
 from bot.helper.telegram_helper import button_build
-from .modules import authorize, list, cancel_mirror, mirror_status, mirror, clone, watch, shell, eval, torrent_search, delete, speedtest, count
+from .modules import authorize, list, cancel_mirror, mirror_status, mirror, clone, dump, pdump, invite, watch, shell, eval, torrent_search, delete, speedtest, count
 
 
 def stats(update, context):
@@ -139,6 +139,12 @@ def bot_help(update, context):
 
 /{BotCommands.ExecHelpCommand}: Get help for Executor module (Only Owner)
 
+/{BotCommands.DumpCommand}: Dump Android Firmwares To GitHub Repo, Example /{BotCommands.DumpCommand} <firmware_link> (Authorized Users Only)
+
+/{BotCommands.PdumpCommand}: Dump Android Firmwares To GitHub Private Repo, Example /{BotCommands.PdumpCommand} <firmware_link> (Authorized Users Only)
+
+/{BotCommands.InviteCommand}: Invite Users To Private GitHub Repo, Example /{BotCommands.InviteCommand} Box-boi redmi_biloba_dump (Only Owner)
+
 /{BotCommands.TsHelpCommand}: Get help for Torrent search module
 '''
 
@@ -199,6 +205,9 @@ botcmds = [
         (f'{BotCommands.PingCommand}','Ping the Bot'),
         (f'{BotCommands.RestartCommand}','Restart the bot [owner/sudo only]'),
         (f'{BotCommands.LogCommand}','Get the Bot Log [owner/sudo only]'),
+        (f'{BotCommands.DumpCommand}','Dump Android Firmware To GitHub Repo [Authorized Users only]'),
+        (f'{BotCommands.PdumpCommand}','Dump Android Firmware To GitHub Private Repo [Authorized Users only]'),
+        (f'{BotCommands.InviteCommand}','Invite Users To Private GitHub Repos [owner/sudo only]'),
         (f'{BotCommands.TsHelpCommand}','Get help for Torrent search module')
     ]
 
