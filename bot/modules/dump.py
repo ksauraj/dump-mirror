@@ -28,14 +28,15 @@ def dev_plus(func):
 
 @dev_plus
 def reply(update: Update, context: CallbackContext):
-    reply = sendMessage('PRE PROCESSING', context.bot, update)
+    return sendMessage('PRE PROCESSING', context.bot, update)
 
 @run_async
 def dump(update: Update, context: CallbackContext):
     message = update.effective_message
     cmd = message.text.split(' ', 1)
-    msg_id=reply.message_id
-    ch_id=reply.chat_id
+    rpl = reply(update, context)
+    msg_id=rpl.message_id
+    ch_id=rpl.chat_id
     if len(cmd) == 1:
         message.reply_text('Please Provide a Direct Link to an Android Firmware')
         return
