@@ -34,7 +34,7 @@ def reply(update: Update, context: CallbackContext):
 def dump(update: Update, context: CallbackContext):
     message = update.effective_message
     cmd = message.text.split(' ', 1)
-    msg_id=reply.message_id
+    msg_id=reply.message_id,
     ch_id=reply.chat_id
     if len(cmd) == 1:
         message.reply_text('Please Provide a Direct Link to an Android Firmware')
