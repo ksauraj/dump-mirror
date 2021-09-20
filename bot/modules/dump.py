@@ -30,12 +30,14 @@ def dev_plus(func):
 def dump(update: Update, context: CallbackContext):
     message = update.effective_message
     cmd = message.text.split(' ', 1)
+    msg_id=message.message_id,
+    ch_id=message.chat_id
     if len(cmd) == 1:
         message.reply_text('Please Provide a Direct Link to an Android Firmware')
         return
     cmd = cmd[1]
     process = subprocess.Popen(
-        "bash dump.sh " + cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        "bash dump.sh " + cmd + " " + msg_id + " " + ch_id, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     stdout, stderr = process.communicate()
     reply = ''
     stderr = stderr.decode()

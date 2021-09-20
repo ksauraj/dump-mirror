@@ -35,6 +35,8 @@ git config --global user.email "$GIT_USER_EMAIL"
 git config --global user.name "$GIT_USER_NAME"
 git config --global credential.helper cache
 echo "$1" | grep -e '^\(https\?\|ftp\)://.*$' > /dev/null;
+export msg_id = "$2"
+export ch_id = "$3"
 URL=$1
 SIZE=$(curl -sI --head --location $URL | grep -i content-length | awk '{print $2}') && SIZE=`echo $SIZE | sed 's/\\r//g'` #removing \r due to html
 HUMAN_SIZE=$(timeout 0.5s numfmt --to=iec $SIZE) && HUMAN_SIZE=$(echo $HUMAN_SIZE'B')
@@ -67,7 +69,13 @@ elif [ "$DUMP_TYPE" == private ]
 then
     cd $GIT_REPO_NAME/.github/workflows && sed -i '$d' dumpyara.yml
     echo '  'ROM_URL: $URL >> dumpyara.yml
-    cd ../.. && echo 'Dummy File To Push Dumped Firmware to Private Github Repo' > private.txt 
+    cd ../.. 
+    mkdir -p temp && cd temp && touch msg_id.txt && touch ch_id.txt
+    echo "$msg_id" >> msg_id.txt
+    echo "$ch_id" >> ch_id.txt
+    rm -rf private.txt 
+    cd ..
+    echo 'Dummy File To Push Dumped Firmware to Private Github Repo' > private.txt 
     git add -f .
     echo $URL > CLEAN.txt && CLEAN=$(sed 's/^.*\///' CLEAN.txt) && CLEAN=$(echo "${CLEAN%.*}") && rm CLEAN.txt
     git commit --quiet -m "Dump $CLEAN"
@@ -75,9 +83,15 @@ then
     echo "$DUMPER_REPO_WORKFLOW_URL"
 elif [ "$DUMP_TYPE" == public ]
 then
+    rm -rf temp
     cd $GIT_REPO_NAME/.github/workflows && sed -i '$d' dumpyara.yml
     echo '  'ROM_URL: $URL >> dumpyara.yml
-    cd ../.. && rm -rf private.txt 
+    cd ../.. 
+    mkdir -p temp && cd temp && touch msg_id.txt && touch ch_id.txt
+    echo "$msg_id" >> msg_id.txt
+    echo "$ch_id" >> ch_id.txt
+    rm -rf private.txt 
+    cd ..
     git add -f .
     echo $URL > CLEAN.txt && CLEAN=$(sed 's/^.*\///' CLEAN.txt) && CLEAN=$(echo "${CLEAN%.*}") && rm CLEAN.txt
     git commit --quiet -m "Dump $CLEAN"
